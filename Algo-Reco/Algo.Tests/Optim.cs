@@ -74,5 +74,26 @@ namespace Algo.Tests
 
         }
 
+        [Test]
+        public void dump_guest_flight_count()
+        {
+            FlightDatabase db = new FlightDatabase( GetFlightDataPath() );
+            Meeting m = new Meeting(3712, db );
+            foreach( var g in m.Guests )
+            {
+                Console.WriteLine( $"{g.Name} ({g.Location}) => {g.ArrivalFlight.Count}, {g.DepartureFlight}" );
+            }
+        }
+        [Test]
+        public void run_algo()
+        {
+            FlightDatabase db = new FlightDatabase( GetFlightDataPath() );
+            Meeting m = new Meeting( 3712, db );
+            for( int i = 0; i < 1000; i++ )
+            {
+                m.GetRandomInstance();
+            }
+            Console.WriteLine( m.BestResult );
+        }
     }
 }
